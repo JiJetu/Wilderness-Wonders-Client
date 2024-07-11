@@ -1,6 +1,8 @@
+import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 import HeroSection from "@/components/heroSection/HeroSection";
 import ProductCategories from "@/components/productCategories/ProductCategories";
 import RecommendedProduct from "@/components/recommendedProduct/RecommendedProduct";
+import Testimonials from "@/components/testimonial/Testimonials";
 
 const Home = () => {
   return (
@@ -8,6 +10,8 @@ const Home = () => {
       <HeroSection />
       <RecommendedProduct />
       <ProductCategories />
+      <FeaturedProducts />
+      <Testimonials />
     </div>
   );
 };
