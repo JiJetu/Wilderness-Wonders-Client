@@ -1,3 +1,4 @@
+import FAQSection from "@/components/faq/FAQSection";
 import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 import HeroSection from "@/components/heroSection/HeroSection";
 import ProductCategories from "@/components/productCategories/ProductCategories";
@@ -12,6 +13,7 @@ const Home = () => {
       <ProductCategories />
       <FeaturedProducts />
       <Testimonials />
+      <FAQSection />
     </div>
   );
 };
