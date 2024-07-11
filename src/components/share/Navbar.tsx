@@ -20,7 +20,7 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to="/contact"
+          to="/product-management"
           className={({ isActive, isPending }) =>
             isActive
               ? "px-5 py-2 border-b-2 rounded-xl hover:bg-transparent hover:border-b-cyan-500"
@@ -29,7 +29,7 @@ const Navbar = () => {
               : "hover:bg-transparent"
           }
         >
-          Contact Us
+          Product Management
         </NavLink>
       </li>
     </>
@@ -75,7 +75,7 @@ const Navbar = () => {
       </nav>
       <nav className="navbar lg:flex lg:justify-center lg:items-center bg-base-100 hidden lg:visible">
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navbar}</ul>
+          <ul className="menu menu-horizontal px-1 space-x-2">{navbar}</ul>
         </div>
       </nav>
     </>
