@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const HeroSection = () => {
   return (
     <>
-      <div className="flex gap-8 justify-center items-center">
+      <div className="md:flex gap-8 justify-center items-center">
         <div className="space-y-4 flex-1">
           <h1 className="text-4xl font-bold">
             Explore the Great Outdoors with Wilderness Wonders
@@ -23,7 +23,7 @@ const HeroSection = () => {
             Shop Now
           </Button>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 mt-8 md:mt-0">
           <img src={BannerImage} alt="" />
         </div>
       </div>
