@@ -5,17 +5,6 @@ import {
 import { Button } from "../ui/button";
 import UpdateProduct from "./UpdateProduct";
 
-type TProductCardProps = {
-  _id: string;
-  name: string;
-  price: number;
-  stockQuantity: number;
-  description: string;
-  category: string;
-  ratings: number;
-  images: string;
-};
-
 const ProductManagementCard = ({ product }) => {
   console.log(product);
   const { _id, name, images, price, category } = product;

@@ -123,9 +123,13 @@ const UpdateProduct = ({ updateProduct, product }) => {
                   <SelectGroup>
                     <SelectLabel>Category</SelectLabel>
                     <SelectItem value="backpacks">Backpacks</SelectItem>
+                    <SelectItem value="clothing">Clothing</SelectItem>
+                    <SelectItem value="cooking-gear">Cooking Gear</SelectItem>
                     <SelectItem value="footwear">FootWear</SelectItem>
                     <SelectItem value="camping">Camping</SelectItem>
-                    <SelectItem value="s&s">Ski & SnowSports</SelectItem>
+                    <SelectItem value="first-aid">First Aid</SelectItem>
+                    <SelectItem value="electronics">Electronics</SelectItem>
+                    <SelectItem value="lighting">Lighting</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

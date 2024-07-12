@@ -6,12 +6,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import image from "../../assets/images/camper-1.jpg";
 import { Button } from "../ui/button";
 import { useGetProductQuery } from "@/redux/api/baseApi";
+import Loading from "@/utils/Loading";
+import ProductCard from "../share/ProductCard";
 
 const RecommendedProduct = () => {
   const { data: products, isLoading, isError } = useGetProductQuery(undefined);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="mt-12">
@@ -27,26 +32,33 @@ const RecommendedProduct = () => {
           className="mx-5 md:mx-14"
         >
           <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            {products?.data?.slice(0, 10)?.map((product) => (
+              <CarouselItem
+                key={product._id}
+                className="md:basis-1/2 lg:basis-1/3"
+              >
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex items-center justify-center p-6">
-                      <img src={image} alt="" />
+                      <ProductCard {...product} />
                     </CardContent>
                   </Card>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          {products?.data.length > 0 ? <CarouselPrevious /> : ""}
+          {products?.data.length > 0 ? <CarouselNext /> : ""}
         </Carousel>
-        <div className="text-center">
-          <Button className="text-[#21c4a8] w-full border-b rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 hover:text-white">
-            View More
-          </Button>
-        </div>
+        {products?.data.length > 0 ? (
+          <div className="text-center">
+            <Button className="text-[#06e7c2] bg-white w-full border-b rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 hover:text-white">
+              View More
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
