@@ -8,8 +8,11 @@ import {
 } from "../ui/carousel";
 import image from "../../assets/images/camper-1.jpg";
 import { Button } from "../ui/button";
+import { useGetProductQuery } from "@/redux/api/baseApi";
 
 const RecommendedProduct = () => {
+  const { data: products, isLoading, isError } = useGetProductQuery(undefined);
+
   return (
     <div className="mt-12">
       <h1 className="text-4xl font-bold">

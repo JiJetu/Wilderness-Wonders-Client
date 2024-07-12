@@ -1,5 +1,3 @@
-import { FormEvent, useState } from "react";
-import { Button } from "../ui/button";
 import {
   Dialog,
   DialogClose,
@@ -9,10 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
-import { useAddProductMutation } from "@/redux/api/baseApi";
+import { Input } from "../ui/input";
 import {
   Select,
   SelectContent,
@@ -22,8 +19,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Textarea } from "../ui/textarea";
+import { FormEvent, useState } from "react";
 
-const AddProduct = () => {
+const UpdateProduct = ({ updateProduct, product }) => {
   const [name, setName] = useState("");
   const [images, setImages] = useState("");
   const [price, setPrice] = useState("");
@@ -31,9 +30,6 @@ const AddProduct = () => {
   const [stockQuantity, setStockQuantity] = useState("");
   const [ratting, setRatting] = useState("");
   const [description, setDescription] = useState("");
-
-  const [addProduct, { isLoading, isError, isSuccess }] =
-    useAddProductMutation();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -48,20 +44,38 @@ const AddProduct = () => {
       description,
     };
 
-    addProduct(taskDetails);
+    const updateDate = {
+      _id: product._id,
+      product: taskDetails,
+    };
+
+    updateProduct(updateDate);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-[#0ccaab] text-white font-semibold text-lg rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500">
-          Add Product
+        <Button className="bg-[#5C53FE] rounded-xl">
+          <svg
+            className="size-5"
+            fill="none"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+            ></path>
+          </svg>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>---Add Product---</DialogTitle>
-          <DialogDescription>Add your product</DialogDescription>
+          <DialogTitle>---Update Product---</DialogTitle>
+          <DialogDescription>Update your product</DialogDescription>
         </DialogHeader>
         <form onSubmit={onSubmit}>
           <div className="grid gap-4 py-4">
@@ -70,21 +84,21 @@ const AddProduct = () => {
                 Name
               </Label>
               <Input
-                placeholder="Product name"
+                defaultValue={product.name}
                 onBlur={(e) => setName(e.target.value)}
                 id="name"
                 className="col-span-3"
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="image" className="text-right">
+              <Label htmlFor="images" className="text-right">
                 Image
               </Label>
               <Input
-                placeholder="Product image URL"
+                defaultValue={product.images}
                 type="url"
                 onBlur={(e) => setImages(e.target.value)}
-                id="image"
+                id="images"
                 className="col-span-3"
               />
             </div>
@@ -93,7 +107,7 @@ const AddProduct = () => {
                 Price
               </Label>
               <Input
-                placeholder="Product price in $"
+                defaultValue={product.price}
                 onBlur={(e) => setPrice(e.target.value)}
                 id="price"
                 className="col-span-3"
@@ -103,7 +117,7 @@ const AddProduct = () => {
               <Label className="text-right">Category</Label>
               <Select onValueChange={(value) => setCategory(value)}>
                 <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select a category" />
+                  <SelectValue defaultValue={product.category} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -121,7 +135,7 @@ const AddProduct = () => {
                 Stock Quantity
               </Label>
               <Input
-                placeholder="Product stock quantity"
+                defaultValue={product.stockQuantity}
                 onBlur={(e) => setStockQuantity(e.target.value)}
                 id="stock-quantity"
                 className="col-span-3"
@@ -132,7 +146,7 @@ const AddProduct = () => {
                 Ratting
               </Label>
               <Input
-                placeholder="Product ratting"
+                defaultValue={product.ratting}
                 onBlur={(e) => setRatting(e.target.value)}
                 id="ratting"
                 className="col-span-3"
@@ -146,13 +160,13 @@ const AddProduct = () => {
                 onBlur={(e) => setDescription(e.target.value)}
                 id="description"
                 className="col-span-3"
-                placeholder="Product Description"
+                defaultValue={product.description}
               />
             </div>
           </div>
           <div className="flex justify-end">
             <DialogClose asChild>
-              <Button type="submit">Add Product</Button>
+              <Button type="submit">Update Product</Button>
             </DialogClose>
           </div>
         </form>
@@ -161,4 +175,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

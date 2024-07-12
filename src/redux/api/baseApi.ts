@@ -1,13 +1,49 @@
-// Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "pokemonApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1/" }),
-  endpoints: () => ({}),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
+  tagTypes: ["product"],
+  endpoints: (builder) => ({
+    getProduct: builder.query({
+      query: () => ({
+        url: "/products",
+        method: "GET",
+      }),
+      providesTags: ["product"],
+    }),
+    addProduct: builder.mutation({
+      query: (data) => ({
+        url: "/products",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["product"],
+    }),
+    updateProduct: builder.mutation({
+      query: (data) => ({
+        url: `/products/${data._id}`,
+        method: "PUT",
+        body: data.product,
+      }),
+      invalidatesTags: ["product"],
+    }),
+    deleteProduct: builder.mutation({
+      query: (id) => {
+        console.log(id);
+        return {
+          url: `/products/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["product"],
+    }),
+  }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const {} = baseApi;
+export const {
+  useGetProductQuery,
+  useAddProductMutation,
+  useDeleteProductMutation,
+  useUpdateProductMutation,
+} = baseApi;
