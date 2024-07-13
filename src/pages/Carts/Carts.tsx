@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
 import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
 
 const Carts = () => {
   const cart = useSelector((state) => state.cart.carts);
@@ -59,12 +60,11 @@ const Carts = () => {
           <div className="mt-6 text-2xl font-bold">
             <p>Total: ${total.toFixed(2)}</p>
           </div>
-          <Button
-            onClick={() => alert("Order Placed!")}
-            className="bg-green-500 text-white font-semibold text-lg rounded-xl hover:bg-green-700 my-4"
-          >
-            Place Order
-          </Button>
+          <NavLink to={"/checkout"}>
+            <Button className="bg-green-500 text-white font-semibold text-lg rounded-xl hover:bg-green-700 my-4">
+              Checkout
+            </Button>
+          </NavLink>
         </div>
       </div>
     </div>

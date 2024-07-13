@@ -1,30 +1,86 @@
-# React + TypeScript + Vite
+<div align="center">
+  <h1>Wilderness Wonders Client</h1>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# Wilderness Wonders Client
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
 
-## Expanding the ESLint configuration
+The Wilderness Wonders Client is the frontend application for the Wilderness Wonders e-commerce platform. This project is designed to provide a seamless user experience for browsing and purchasing camping gear and related products.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Project Description
 
-- Configure the top-level `parserOptions` property like this:
+This client-side application is built with modern React tools and libraries to offer a responsive and interactive user interface. It connects to the Wilderness Wonders backend to manage and display product information, handle user interactions, and process orders.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Features
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Interactive and responsive user interface.
+- Integration with Redux for state management.
+- Utilizes Tailwind CSS for styling.
+- Includes various UI components from Radix UI and Ant Design.
+- Image magnification and carousel functionalities.
+
+## Technology Stack
+
+- **React**: JavaScript library for building user interfaces.
+- **Vite**: Build tool for fast development and optimized builds.
+- **TypeScript**: Superset of JavaScript with static type definitions.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Radix UI**: Low-level UI component library.
+- **Ant Design**: Design system for enterprise-level products.
+- **Redux Toolkit**: State management library for React.
+- **SweetAlert2**: Library for beautiful, customizable alerts.
+- **Embla Carousel**: Library for creating carousels.
+
+## Installation Guideline
+
+Follow these steps to get the project running locally on your machine.
+
+### Prerequisites
+
+- **Node.js**: Ensure Node.js is installed on your system. You can download it from [nodejs.org](https://nodejs.org/).
+
+### Installation Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/JiJetu/Wilderness-Wonders-Client.git
+
+   ```
+
+2. **Navigate to the Project Directory**
+
+   ```bash
+   cd wilderness-wonders-client
+
+   ```
+
+3. **Install Dependencies**
+
+   ```bash
+   npm install
+
+   ```
+
+4. **Build the Project**
+
+   ```bash
+   npm run build
+
+   ```
+
+### Configuration
+
+Here you doesn't have to create any configuration file like `.env.local`
+
+## Usage
+
+1. **Start the Development Server**
+
+   ```bash
+   npm run dev
+
+   ```
