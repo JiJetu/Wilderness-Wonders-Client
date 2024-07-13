@@ -53,7 +53,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="w-full">
+    <div className="mt-12 w-full">
       <Carousel className="mx-5 h-full md:mx-14">
         <CarouselContent>
           {reviews.map((rev) => (

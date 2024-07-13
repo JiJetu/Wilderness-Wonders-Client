@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { useGetProductQuery } from "@/redux/api/baseApi";
 import Loading from "@/utils/Loading";
 import ProductCard from "../share/ProductCard";
+import { NavLink } from "react-router-dom";
 
 const RecommendedProduct = () => {
   const { data: products, isLoading, isError } = useGetProductQuery(undefined);
@@ -52,9 +53,11 @@ const RecommendedProduct = () => {
         </Carousel>
         {products?.data.length > 0 ? (
           <div className="text-center">
-            <Button className="text-[#06e7c2] bg-white w-full border-b rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 hover:text-white">
-              View More
-            </Button>
+            <NavLink to={"/product"}>
+              <Button className="text-[#06e7c2] bg-white w-full border-b rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 hover:text-white">
+                View More
+              </Button>
+            </NavLink>
           </div>
         ) : (
           ""

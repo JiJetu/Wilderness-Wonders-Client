@@ -1,6 +1,8 @@
 import { TProductCardProps } from "@/utils/typeOfProduct";
+import { NavLink } from "react-router-dom";
 
 const ProductCard = ({
+  _id,
   name,
   images,
   price,
@@ -9,7 +11,7 @@ const ProductCard = ({
   ratting,
 }: TProductCardProps) => {
   return (
-    <div>
+    <NavLink to={`/product/${_id}`}>
       <img className="w-full" src={images} alt="" />
       <div className="mt-6 space-y-2">
         <p className="text-base">Category: {category}</p>
@@ -22,7 +24,7 @@ const ProductCard = ({
         </div>
         <p className="text-xl font-semibold">$ {price}</p>
       </div>
-    </div>
+    </NavLink>
   );
 };
 
