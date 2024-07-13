@@ -1,7 +1,7 @@
-import { useState, useEffect, FormEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   useGetSingleProductQuery,
   useUpdateProductMutation,
@@ -16,10 +16,11 @@ const Checkout = () => {
   const [updateProduct] = useUpdateProductMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [orderQuantity, setOrderQuantity] = useState(1);
-  const [productDetails, setProductDetails] = useState(null);
+  const [productDetails, setProductDetails] = useState<any>(null);
 
   useEffect(() => {
     if (data) {
@@ -34,7 +35,7 @@ const Checkout = () => {
   const { images, name, stockQuantity, price, description, category } =
     productDetails || {};
 
-  const handleAddProduct = (e: FormEvent) => {
+  const handleAddProduct = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (
@@ -51,29 +52,39 @@ const Checkout = () => {
       return;
     }
 
-    updateProduct({ id, stockQuantity: stockQuantity - orderQuantity });
+    // Update the stock quantity
+    try {
+      await updateProduct({ id, stockQuantity: stockQuantity - orderQuantity });
 
-    const cartInfo = {
-      _id: id,
-      pName: name,
-      price: Number(price),
-      orderQuantity: Number(orderQuantity),
-      productQuantity: Number(stockQuantity),
-      description: description,
-      category: category,
-      images: images,
-    };
-    dispatch(addToCart(cartInfo));
+      // Add product to cart
+      const cartInfo = {
+        _id: id,
+        pName: name,
+        price: Number(price),
+        orderQuantity: Number(orderQuantity),
+        productQuantity: stockQuantity,
+        description: description,
+        category: category,
+        images: images,
+      };
+      dispatch(addToCart(cartInfo));
 
-    Swal.fire({
-      position: "top-center",
-      icon: "success",
-      title: "Product added to cart successfully!",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product added to cart successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
-    navigate("/cart");
+      navigate("/cart"); // Redirect to cart or any other page
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong!",
+        text: "Please try again later.",
+      });
+    }
   };
 
   return (
@@ -169,7 +180,7 @@ const Checkout = () => {
           type="submit"
           className="text-[#06e7c2] border-2 border-cyan-500 mb-5 bg-white w-full rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 hover:text-white"
         >
-          Add to Cart
+          Add info
         </Button>
       </form>
     </div>
