@@ -4,7 +4,7 @@ import ProductManagementCard from "./ProductManagementCard";
 import Loading from "@/utils/Loading";
 
 const ProductManagementContainer = () => {
-  const { data: products, isLoading, isError } = useGetProductQuery(undefined);
+  const { data: products, isLoading, isError } = useGetProductQuery("");
 
   if (isLoading) {
     return <Loading />;

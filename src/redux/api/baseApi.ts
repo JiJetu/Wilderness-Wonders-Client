@@ -6,10 +6,14 @@ export const baseApi = createApi({
   tagTypes: ["product"],
   endpoints: (builder) => ({
     getProduct: builder.query({
-      query: () => ({
-        url: "/products",
-        method: "GET",
-      }),
+      query: (queryParams) => {
+        const params = new URLSearchParams(queryParams);
+
+        return {
+          url: `/products?${params.toString()}`,
+          method: "GET",
+        };
+      },
       providesTags: ["product"],
     }),
     getSingleProduct: builder.query({

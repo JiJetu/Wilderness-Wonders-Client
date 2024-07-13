@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -10,9 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const Filter = () => {
-  const [position, setPosition] = useState("bottom");
-
+const Filter = ({ category, setCategory }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,7 +33,7 @@ const Filter = () => {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Filter by category</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+        <DropdownMenuRadioGroup value={category} onValueChange={setCategory}>
           <DropdownMenuRadioItem value="backpacks">
             Backpacks
           </DropdownMenuRadioItem>

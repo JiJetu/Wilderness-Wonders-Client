@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -32,8 +33,26 @@ const AddProduct = () => {
   const [ratting, setRatting] = useState("");
   const [description, setDescription] = useState("");
 
-  const [addProduct, { isLoading, isError, isSuccess }] =
-    useAddProductMutation();
+  const [addProduct, { isError, isSuccess }] = useAddProductMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Product added successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (isError) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to add product. Please try again.",
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    }
+  }, [isSuccess, isError]);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();

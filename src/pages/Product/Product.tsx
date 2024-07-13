@@ -3,60 +3,94 @@ import ProductCard from "@/components/share/ProductCard";
 import { Button } from "@/components/ui/button";
 import { useGetProductQuery } from "@/redux/api/baseApi";
 import Loading from "@/utils/Loading";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 const Product = () => {
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(2000);
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
 
-  const { data: products, isLoading, isError } = useGetProductQuery(undefined);
+  const queryParams = {
+    search,
+    category,
+    minPrice: 0,
+    maxPrice: price,
+    sortOrder,
+  };
+
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useGetProductQuery(queryParams);
+
+  console.log(isError);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  const handleSearch = (e: FormEvent) => {
-    e.preventDefault();
+  const handleClearFilters = () => {
+    setPrice(2000);
+    setSearch("");
+    setCategory("");
+    setSortOrder("asc");
   };
   return (
     <div className="flex gap-4">
-      <div className="w-[20%] h-screen bg-base-200 p-4 rounded-r-lg pt-10">
+      <div className="w-[20%] min-h-screen bg-base-200 p-4 rounded-r-lg pt-16">
+        <Button
+          className="bg-white border-2 border-cyan-500 hover:bg-white text-cyan-500"
+          onClick={handleClearFilters}
+        >
+          Set Default
+        </Button>
         <div className="space-y-2">
           <p className="flex justify-between items-center">
             Price{" "}
-            <span className="text-lg text-red-600 font-semibold">
+            <span className="text-lg text-cyan-500 font-semibold">
               $ {price}
             </span>
           </p>
           <input
             type="range"
+            defaultValue={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            min={0}
+            min={1}
             max={2000}
-            step={10}
-            // value={filterData.price}
+            step={1}
             className="range range-sm"
           />
+        </div>
+        <div className="flex items-center gap-3 mt-3">
+          <h1 className="text-base font-semibold">According to price:</h1>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => setSortOrder("desc")}
+              className="bg-base-200 border hover:bg-white text-black"
+            >
+              High
+            </Button>
+            <Button
+              onClick={() => setSortOrder("asc")}
+              className="bg-base-200 border hover:bg-white text-black"
+            >
+              Low
+            </Button>
+          </div>
         </div>
       </div>
       <div className="flex-1">
         <h1 className="text-3xl font-bold text-center">All Products</h1>
         <div className="mt-8 flex justify-between">
-          <form className="flex" onSubmit={handleSearch}>
-            <input
-              type="text"
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="search here"
-              className="input input-bordered rounded-r-none w-full max-w-[250px]"
-            />
-            <Button
-              type="submit"
-              className="text-base py-[24px] rounded-l-none bg-cyan-500"
-            >
-              Search
-            </Button>
-          </form>
-          <Filter />
+          <input
+            type="text"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="search here"
+            className="input input-bordered w-full max-w-[300px]"
+          />
+          <Filter category={category} setCategory={setCategory} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {products?.data?.map((product) => (

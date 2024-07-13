@@ -21,8 +21,10 @@ import {
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { FormEvent, useState } from "react";
+import { useUpdateProductMutation } from "@/redux/api/baseApi";
+import Loading from "@/utils/Loading";
 
-const UpdateProduct = ({ updateProduct, product }) => {
+const UpdateProduct = ({ product }) => {
   const [name, setName] = useState("");
   const [images, setImages] = useState("");
   const [price, setPrice] = useState("");
@@ -30,6 +32,10 @@ const UpdateProduct = ({ updateProduct, product }) => {
   const [stockQuantity, setStockQuantity] = useState("");
   const [ratting, setRatting] = useState("");
   const [description, setDescription] = useState("");
+
+  const [updateProduct, { isSuccess, isLoading }] = useUpdateProductMutation();
+
+  console.log(isSuccess);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -51,6 +57,10 @@ const UpdateProduct = ({ updateProduct, product }) => {
 
     updateProduct(updateDate);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Dialog>

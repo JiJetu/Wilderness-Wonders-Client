@@ -13,7 +13,7 @@ import ProductCard from "../share/ProductCard";
 import { NavLink } from "react-router-dom";
 
 const FeaturedProducts = () => {
-  const { data: products, isLoading, isError } = useGetProductQuery(undefined);
+  const { data: products, isLoading, isError } = useGetProductQuery("");
 
   if (isLoading) {
     return <Loading />;

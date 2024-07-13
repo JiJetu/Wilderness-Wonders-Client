@@ -12,17 +12,19 @@ const ProductCard = ({
 }: TProductCardProps) => {
   return (
     <NavLink to={`/product/${_id}`}>
-      <img className="w-full" src={images} alt="" />
-      <div className="mt-6 space-y-2">
-        <p className="text-base">Category: {category}</p>
-        <h1 className="text-3xl">{name}</h1>
-        <div className="flex justify-between">
-          <p>
-            Stock: <span>{stockQuantity}</span>
-          </p>
-          <p>{ratting}</p>
+      <div className="shadow-lg rounded-lg">
+        <img className="w-full rounded-lg" src={images} alt="" />
+        <div className="mt-6 space-y-2 p-5">
+          <p className="text-base">Category: {category}</p>
+          <h1 className="text-3xl">{name}</h1>
+          <div className="flex justify-between">
+            <p>
+              Stock: <span>{stockQuantity}</span>
+            </p>
+            <p>{ratting}</p>
+          </div>
+          <p className="text-xl font-semibold">$ {price}</p>
         </div>
-        <p className="text-xl font-semibold">$ {price}</p>
       </div>
     </NavLink>
   );

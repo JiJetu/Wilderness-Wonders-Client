@@ -4,25 +4,56 @@ import {
 } from "@/redux/api/baseApi";
 import { Button } from "../ui/button";
 import UpdateProduct from "./UpdateProduct";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const ProductManagementCard = ({ product }) => {
   console.log(product);
   const { _id, name, images, price, category } = product;
-  const [deleteProduct, { isLoading, isError, isSuccess }] =
-    useDeleteProductMutation();
-  const [updateProduct, { data }] = useUpdateProductMutation();
+  const [deleteProduct, { isError, isSuccess }] = useDeleteProductMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+    } else if (isError) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to delete product. Please try again.",
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    }
+  }, [isSuccess, isError]);
 
   const handleDeletedProduct = () => {
-    deleteProduct(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProduct(_id);
+      }
+    });
   };
 
   return (
     <div className="bg-white rounded-md flex justify-between items-center p-3 border text-center">
-      <img className="w-40 mr-10" src={images} alt="" />
+      <div className="flex-1 flex justify-center items-center">
+        <img className="w-40 h-40 mr-10" src={images} alt="" />
+      </div>
       <p className="font-semibold flex-1">{name}</p>
       <p className="flex-1">$ {price}</p>
       <p className="flex-1">{category}</p>
-      <div className="space-x-5">
+      <div className="space-x-5 flex-1">
         <Button
           onClick={handleDeletedProduct}
           className="bg-red-500 rounded-xl"
@@ -43,7 +74,7 @@ const ProductManagementCard = ({ product }) => {
           </svg>
         </Button>
 
-        <UpdateProduct updateProduct={updateProduct} product={product} />
+        <UpdateProduct product={product} />
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import ProductCard from "../share/ProductCard";
 import { NavLink } from "react-router-dom";
 
 const RecommendedProduct = () => {
-  const { data: products, isLoading, isError } = useGetProductQuery(undefined);
+  const { data: products, isLoading } = useGetProductQuery(undefined);
 
   if (isLoading) {
     return <Loading />;
@@ -32,22 +32,28 @@ const RecommendedProduct = () => {
           }}
           className="mx-5 md:mx-14"
         >
-          <CarouselContent>
-            {products?.data?.slice(0, 10)?.map((product) => (
-              <CarouselItem
-                key={product._id}
-                className="md:basis-1/2 lg:basis-1/3"
-              >
-                <div className="p-1">
-                  <Card>
-                    <CardContent className="flex items-center justify-center p-6">
-                      <ProductCard {...product} />
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+          {products?.data.length <= 0 ? (
+            <div className="bg-white text-2xl font-bold p-5 flex justify-center items-center">
+              <p>There is no featured data, add more data</p>
+            </div>
+          ) : (
+            <CarouselContent>
+              {products?.data?.slice(0, 10)?.map((product) => (
+                <CarouselItem
+                  key={product._id}
+                  className="md:basis-1/2 lg:basis-1/3"
+                >
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex items-center justify-center p-6">
+                        <ProductCard {...product} />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          )}
           {products?.data.length > 0 ? <CarouselPrevious /> : ""}
           {products?.data.length > 0 ? <CarouselNext /> : ""}
         </Carousel>
