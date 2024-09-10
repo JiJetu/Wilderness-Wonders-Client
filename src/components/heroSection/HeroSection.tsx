@@ -4,16 +4,16 @@ import { Button } from "../ui/button";
 const HeroSection = () => {
   return (
     <>
-      <div className="md:flex gap-8 justify-center items-center">
-        <div className="space-y-4 flex-1">
-          <h1 className="text-4xl font-bold">
+      <div className="md:flex gap-4 justify-center items-center">
+        <div className="flex-1">
+          <h1 className="text-5xl font-bold mb-6">
             Explore the Great Outdoors with Wilderness Wonders
           </h1>
-          <h3 className="text-lg font-serif">
+          <h3 className="text-lg font-serif mb-2">
             Gear up for your next adventure with the best camping equipment and
             accessories.
           </h3>
-          <p className="text-slate-500">
+          <p className="text-slate-500 mb-4">
             Discover a wide range of high-quality camping gear, from tents and
             backpacks to cooking supplies and hiking essentials. At Wilderness
             Wonders, we have everything you need to make your outdoor

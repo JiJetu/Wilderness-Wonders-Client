@@ -92,9 +92,21 @@ const Navbar = () => {
               {navbar}
             </ul>
           </div>
-          <NavLink to={"/"} className="text-xl font-semibold font-serif">
-            <span className="text-[#70E6D2] font-extrabold">Wilderness</span>
-            Wonders
+          <NavLink
+            to={"/"}
+            className="text-[8px] md:text-xl font-semibold font-serif"
+          >
+            <div className="flex items-center gap-3">
+              <img
+                className="h-[40px] w-[40px] md:h-[70px] md:w-[70px]"
+                src="https://th.bing.com/th/id/OIG2.DyrLryTuvTHAWqJO16H9?pid=ImgGn"
+                alt=""
+              />
+              <p className="hover:text-black flex gap-2">
+                <span className="text-[#70E6D2] font-extrabold">Campers</span>
+                Shop
+              </p>
+            </div>
           </NavLink>
         </div>
 

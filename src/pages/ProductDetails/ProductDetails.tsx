@@ -1,3 +1,4 @@
+import Rating from "@/components/share/Rating";
 import { Button } from "@/components/ui/button";
 import {
   useGetSingleProductQuery,
@@ -58,7 +59,7 @@ const ProductDetails = () => {
       updateProduct(updateData);
 
       Swal.fire({
-        position: "top-center",
+        position: "top-end",
         icon: "success",
         title: "Product added to cart",
         showConfirmButton: false,
@@ -66,7 +67,7 @@ const ProductDetails = () => {
       });
     } else {
       Swal.fire({
-        position: "top-center",
+        position: "top-end",
         icon: "error",
         title: "Product is out of stock",
         showConfirmButton: false,
@@ -90,7 +91,7 @@ const ProductDetails = () => {
         <div className="w-2/6 space-y-2">
           <h1 className="text-3xl font-bold">{name}</h1>
           <p className="text-base font-semibold">Stock: {stockQuantity}</p>
-          <p className="text-lg">{ratting}</p>
+          <Rating rating={Number(ratting)} />
           <p className="text-lg font-semibold space-x-3">
             <span>Category:</span>
             <span className="text-cyan-500 uppercase">{category}</span>
@@ -109,8 +110,24 @@ const ProductDetails = () => {
           </Button>
         </div>
       </div>
-      <p className="text-lg font-bold">Description:</p>
-      <p className="text-base text-gray-500 w-full my-5">{description}</p>
+      <p className="text-xl font-bold">Description:</p>
+      <div className="space-y-5 my-5 text-base md:text-lg text-gray-500 w-full">
+        <p>{description}</p>
+        <p>
+          Inspired by leading outdoor retailers, Campers Shop combines a
+          visually striking design with practical functionality. Our website
+          offers an immersive shopping experience with detailed product
+          descriptions, vibrant images, and easy navigation, ensuring you can
+          quickly locate the items you need for your next adventure.
+        </p>
+        <p>
+          Whether you're planning a weekend getaway or a cross-country
+          expedition, Campers Shop provides the tools and accessories you need
+          to make your camping experience enjoyable and hassle-free. Explore our
+          curated collections and discover why Campers Shop is the ultimate
+          destination for camping enthusiasts.
+        </p>
+      </div>
     </div>
   );
 };

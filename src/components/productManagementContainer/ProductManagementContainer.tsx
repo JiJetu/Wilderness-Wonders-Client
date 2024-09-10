@@ -2,9 +2,10 @@ import { useGetProductQuery } from "@/redux/api/baseApi";
 import AddProduct from "./AddProduct";
 import ProductManagementCard from "./ProductManagementCard";
 import Loading from "@/utils/Loading";
+import { TProductCardProps } from "@/utils/typeOfProduct";
 
 const ProductManagementContainer = () => {
-  const { data: products, isLoading, isError } = useGetProductQuery("");
+  const { data: products, isLoading } = useGetProductQuery("");
 
   if (isLoading) {
     return <Loading />;
@@ -33,7 +34,7 @@ const ProductManagementContainer = () => {
                 <p className="flex-1">Product Category</p>
                 <p className="flex-1">Action</p>
               </div>
-              {products?.data?.map((product) => (
+              {products?.data?.map((product: TProductCardProps) => (
                 <ProductManagementCard key={product._id} product={product} />
               ))}
             </div>

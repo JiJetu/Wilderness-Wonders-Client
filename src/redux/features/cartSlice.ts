@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type TCart = {
+export type TCart = {
   _id: string | undefined;
   pName: string;
   price: number;

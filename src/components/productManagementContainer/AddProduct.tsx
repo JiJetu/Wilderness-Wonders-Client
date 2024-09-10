@@ -38,7 +38,7 @@ const AddProduct = () => {
   useEffect(() => {
     if (isSuccess) {
       Swal.fire({
-        position: "top-center",
+        position: "top-end",
         icon: "success",
         title: "Product added successfully!",
         showConfirmButton: false,

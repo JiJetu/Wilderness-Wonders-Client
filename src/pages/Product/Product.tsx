@@ -3,6 +3,7 @@ import ProductCard from "@/components/share/ProductCard";
 import { Button } from "@/components/ui/button";
 import { useGetProductQuery } from "@/redux/api/baseApi";
 import Loading from "@/utils/Loading";
+import { TProductCardProps } from "@/utils/typeOfProduct";
 import { useState } from "react";
 
 const Product = () => {
@@ -44,7 +45,7 @@ const Product = () => {
           className="bg-white border-2 border-cyan-500 hover:bg-white text-cyan-500"
           onClick={handleClearFilters}
         >
-          Set Default
+          Reset all filters
         </Button>
         <div className="space-y-2">
           <p className="flex justify-between items-center">
@@ -55,16 +56,18 @@ const Product = () => {
           </p>
           <input
             type="range"
+            value={price}
             defaultValue={price}
             onChange={(e) => setPrice(Number(e.target.value))}
             min={1}
             max={2000}
             step={1}
-            className="range range-sm"
+            className="range range-xs range-primary"
           />
         </div>
         <div className="flex items-center gap-3 mt-3">
-          <h1 className="text-base font-semibold">According to price:</h1>
+          <h1 className="text-base font-semibold">According to price</h1>
+          <h6 className="text-lg">:</h6>
           <div className="flex gap-2">
             <Button
               onClick={() => setSortOrder("desc")}
@@ -93,7 +96,7 @@ const Product = () => {
           <Filter category={category} setCategory={setCategory} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-          {products?.data?.map((product) => (
+          {products?.data?.map((product: TProductCardProps) => (
             <ProductCard key={product._id} {...product} />
           ))}
         </div>

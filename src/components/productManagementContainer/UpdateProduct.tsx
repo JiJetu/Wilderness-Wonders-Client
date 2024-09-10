@@ -20,11 +20,27 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useUpdateProductMutation } from "@/redux/api/baseApi";
 import Loading from "@/utils/Loading";
 
-const UpdateProduct = ({ product }) => {
+interface Product {
+  _id: string;
+  name: string;
+  images: string;
+  price: number;
+  category: string;
+  stockQuantity: number;
+  ratting: number;
+  description: string;
+}
+
+// Define the component props type
+interface UpdateProductProps {
+  product: Product;
+}
+
+const UpdateProduct: React.FC<UpdateProductProps> = ({ product }) => {
   const [name, setName] = useState("");
   const [images, setImages] = useState("");
   const [price, setPrice] = useState("");

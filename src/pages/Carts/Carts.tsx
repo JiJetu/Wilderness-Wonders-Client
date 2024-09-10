@@ -1,10 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
+import {
+  removeFromCart,
+  TCart,
+  updateQuantity,
+} from "@/redux/features/cartSlice";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
-const Carts = () => {
-  const cart = useSelector((state) => state.cart.carts);
+const Carts: React.FC = () => {
+  const cart = useSelector(
+    (state: { cart: { carts: TCart[] } }) => state.cart.carts
+  );
+
   const dispatch = useDispatch();
 
   const handleRemove = (id: string) => {
@@ -16,7 +24,7 @@ const Carts = () => {
   };
 
   const total = cart.reduce(
-    (acc, item) => acc + item.price * item.oderQuantity,
+    (acc: number, item) => acc + item.price * item.oderQuantity,
     0
   );
 
@@ -40,7 +48,10 @@ const Carts = () => {
                   min={1}
                   max={item.productQuantity}
                   onChange={(e) =>
-                    handleQuantityChange(item._id, Number(e.target.value))
+                    handleQuantityChange(
+                      item._id as string,
+                      Number(e.target.value)
+                    )
                   }
                   className="input input-bordered w-full"
                 />
@@ -61,7 +72,7 @@ const Carts = () => {
             <p>Total: ${total.toFixed(2)}</p>
           </div>
           <NavLink to={"/checkout"}>
-            <Button className="bg-green-500 text-white font-semibold text-lg rounded-xl hover:bg-green-700 my-4">
+            <Button className="bg-[#0ccaab] px-10 text-white rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 my-4">
               Checkout
             </Button>
           </NavLink>

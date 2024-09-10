@@ -1,13 +1,26 @@
-import {
-  useDeleteProductMutation,
-  useUpdateProductMutation,
-} from "@/redux/api/baseApi";
+import { useDeleteProductMutation } from "@/redux/api/baseApi";
 import { Button } from "../ui/button";
 import UpdateProduct from "./UpdateProduct";
 import Swal from "sweetalert2";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-const ProductManagementCard = ({ product }) => {
+interface Product {
+  _id: string;
+  name: string;
+  images: string;
+  price: number;
+  category: string;
+  stockQuantity: number;
+  ratting: number;
+  description: string;
+}
+
+// Define the component props type
+interface UpdateProductProps {
+  product: Product;
+}
+
+const ProductManagementCard: React.FC<UpdateProductProps> = ({ product }) => {
   console.log(product);
   const { _id, name, images, price, category } = product;
   const [deleteProduct, { isError, isSuccess }] = useDeleteProductMutation();

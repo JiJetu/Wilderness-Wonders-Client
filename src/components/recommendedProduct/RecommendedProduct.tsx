@@ -11,6 +11,7 @@ import { useGetProductQuery } from "@/redux/api/baseApi";
 import Loading from "@/utils/Loading";
 import ProductCard from "../share/ProductCard";
 import { NavLink } from "react-router-dom";
+import { TProductCardProps } from "@/utils/typeOfProduct";
 
 const RecommendedProduct = () => {
   const { data: products, isLoading } = useGetProductQuery(undefined);
@@ -38,20 +39,22 @@ const RecommendedProduct = () => {
             </div>
           ) : (
             <CarouselContent>
-              {products?.data?.slice(0, 10)?.map((product) => (
-                <CarouselItem
-                  key={product._id}
-                  className="md:basis-1/2 lg:basis-1/3"
-                >
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex items-center justify-center p-6">
-                        <ProductCard {...product} />
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
+              {products?.data
+                ?.slice(0, 10)
+                ?.map((product: TProductCardProps) => (
+                  <CarouselItem
+                    key={product._id}
+                    className="md:basis-1/2 lg:basis-1/3"
+                  >
+                    <div className="p-1">
+                      <Card>
+                        <CardContent className="flex items-center justify-center p-6">
+                          <ProductCard {...product} />
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
             </CarouselContent>
           )}
           {products?.data.length > 0 ? <CarouselPrevious /> : ""}

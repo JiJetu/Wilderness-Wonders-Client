@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -9,7 +10,12 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const Filter = ({ category, setCategory }) => {
+interface FilterProps {
+  category: string;
+  setCategory: (value: string) => void;
+}
+
+const Filter: React.FC<FilterProps> = ({ category, setCategory }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

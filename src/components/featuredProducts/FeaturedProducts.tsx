@@ -11,9 +11,10 @@ import Loading from "@/utils/Loading";
 import { useGetProductQuery } from "@/redux/api/baseApi";
 import ProductCard from "../share/ProductCard";
 import { NavLink } from "react-router-dom";
+import { TProductCardProps } from "@/utils/typeOfProduct";
 
 const FeaturedProducts = () => {
-  const { data: products, isLoading, isError } = useGetProductQuery("");
+  const { data: products, isLoading } = useGetProductQuery("");
 
   if (isLoading) {
     return <Loading />;
@@ -37,20 +38,22 @@ const FeaturedProducts = () => {
             </div>
           ) : (
             <CarouselContent>
-              {products?.data?.slice(10, 20)?.map((product) => (
-                <CarouselItem
-                  key={product._id}
-                  className="md:basis-1/2 lg:basis-1/3"
-                >
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex items-center justify-center p-6">
-                        <ProductCard key={product._id} {...product} />
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
+              {products?.data
+                ?.slice(10, 20)
+                ?.map((product: TProductCardProps) => (
+                  <CarouselItem
+                    key={product._id}
+                    className="md:basis-1/2 lg:basis-1/3"
+                  >
+                    <div className="p-1">
+                      <Card>
+                        <CardContent className="flex items-center justify-center p-6">
+                          <ProductCard key={product._id} {...product} />
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
             </CarouselContent>
           )}
 

@@ -61,7 +61,7 @@ const Testimonials = () => {
               <div className="p-1 h-[500px]">
                 <Card className="h-full">
                   <CardContent className="flex items-center justify-center h-full p-6">
-                    <div className="flex items-center justify-center">
+                    <div className="md:flex items-center justify-center">
                       <div className="space-y-5 flex-1">
                         <h3 className="text-base text-gray-500">
                           Our Customer reviews

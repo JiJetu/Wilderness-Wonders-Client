@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import {
   useGetSingleProductQuery,
   useUpdateProductMutation,
 } from "@/redux/api/baseApi";
-import { addToCart } from "@/redux/features/cartSlice";
 import { Button } from "@/components/ui/button";
 import Loading from "@/utils/Loading";
 
@@ -35,56 +34,18 @@ const Checkout = () => {
   const { images, name, stockQuantity, price, description, category } =
     productDetails || {};
 
-  const handleAddProduct = async (e: React.FormEvent) => {
+  const handleAddProduct = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (
-      !userName ||
-      !userEmail ||
-      orderQuantity < 1 ||
-      orderQuantity > stockQuantity
-    ) {
-      Swal.fire({
-        icon: "error",
-        title: "Invalid Input",
-        text: "Please check the quantity and fill out all fields.",
-      });
-      return;
-    }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Product added to cart successfully!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
 
-    // Update the stock quantity
-    try {
-      await updateProduct({ id, stockQuantity: stockQuantity - orderQuantity });
-
-      // Add product to cart
-      const cartInfo = {
-        _id: id,
-        pName: name,
-        price: Number(price),
-        orderQuantity: Number(orderQuantity),
-        productQuantity: stockQuantity,
-        description: description,
-        category: category,
-        images: images,
-      };
-      dispatch(addToCart(cartInfo));
-
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Product added to cart successfully!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-
-      navigate("/cart"); // Redirect to cart or any other page
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Something went wrong!",
-        text: "Please try again later.",
-      });
-    }
+    navigate("/cart");
   };
 
   return (
