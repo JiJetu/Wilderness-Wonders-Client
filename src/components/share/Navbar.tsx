@@ -94,7 +94,7 @@ const Navbar = () => {
           </div>
           <NavLink
             to={"/"}
-            className="text-[8px] md:text-xl font-semibold font-serif"
+            className="text-base md:text-xl font-semibold font-serif"
           >
             <div className="flex items-center gap-3">
               <img

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "pokemonApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://wilderness-wonders-server-two.vercel.app",
+    baseUrl: "http://localhost:5000",
   }),
   tagTypes: ["product"],
   endpoints: (builder) => ({

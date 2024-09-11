@@ -39,8 +39,8 @@ const Product = () => {
     setSortOrder("asc");
   };
   return (
-    <div className="flex gap-4">
-      <div className="w-[20%] min-h-screen bg-base-200 p-4 rounded-r-lg pt-16">
+    <div className="md:flex gap-4">
+      <div className="md:w-[20%] min-h-screen bg-base-200 p-4 rounded-r-lg pt-16">
         <Button
           className="bg-white border-2 border-cyan-500 hover:bg-white text-cyan-500"
           onClick={handleClearFilters}
@@ -85,7 +85,9 @@ const Product = () => {
         </div>
       </div>
       <div className="flex-1">
-        <h1 className="text-3xl font-bold text-center">All Products</h1>
+        <h1 className="text-3xl mt-5 md:mt-0 font-bold text-center">
+          All Products
+        </h1>
         <div className="mt-8 flex justify-between">
           <input
             type="text"

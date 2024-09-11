@@ -29,7 +29,7 @@ const AboutUs = () => {
   return (
     <div className="p-8">
       <section className="mb-8 md:flex items-center gap-8">
-        <div className="w-[30%]">
+        <div className="md:w-[30%]">
           <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
           <div className="space-y-4">
             <p className="text-base">
@@ -97,10 +97,10 @@ const AboutUs = () => {
           </div>
           <div className="w-full md:w-1/2">
             <p className="mb-6 text-base">
-              Welcome to Wilderness Wonders, your ultimate destination for all
-              things camping and outdoor adventure! Our journey began with a
-              simple goal: to provide adventurers like you with the best gear
-              and essentials to make every outdoor experience unforgettable.
+              Welcome to Campers Shop, your ultimate destination for all things
+              camping and outdoor adventure! Our journey began with a simple
+              goal: to provide adventurers like you with the best gear and
+              essentials to make every outdoor experience unforgettable.
             </p>
           </div>
         </div>
@@ -117,9 +117,9 @@ const AboutUs = () => {
               We believe in the transformative power of nature and the
               importance of responsible outdoor practices. Our commitment to
               sustainability and respect for the environment guides everything
-              we do. Thank you for being a part of the Wilderness Wonders
-              community. We’re excited to support your outdoor journeys and help
-              you discover the wonders of the wild!
+              we do. Thank you for being a part of the Campers Shop community.
+              We’re excited to support your outdoor journeys and help you
+              discover the wonders of the wild!
             </p>
           </div>
           <div className="w-full md:w-1/2 md:pl-4 mb-6">
@@ -130,8 +130,8 @@ const AboutUs = () => {
             />
             <h2 className="text-2xl font-bold mb-2">Our Values</h2>
             <p className="mb-6 text-base">
-              At Wilderness Wonders, we are passionate about the great outdoors
-              and committed to delivering top-quality products that enhance your
+              At Campers Shop, we are passionate about the great outdoors and
+              committed to delivering top-quality products that enhance your
               adventures. We offer a curated selection of tents, backpacks,
               sleeping bags, and other camping essentials, carefully chosen to
               meet the needs of both seasoned explorers and those new to the
@@ -140,14 +140,14 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 md:bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Meet Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="card bg-white shadow-md rounded-lg p-6"
+                className="card bg-white md:shadow-md rounded-lg p-6"
               >
                 <div className="flex items-center justify-center mb-4">
                   <img

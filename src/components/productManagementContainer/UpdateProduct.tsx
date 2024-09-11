@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useUpdateProductMutation } from "@/redux/api/baseApi";
 import Loading from "@/utils/Loading";
 
@@ -35,12 +35,11 @@ interface Product {
   description: string;
 }
 
-// Define the component props type
-interface UpdateProductProps {
+type UpdateProductProps = {
   product: Product;
-}
+};
 
-const UpdateProduct: React.FC<UpdateProductProps> = ({ product }) => {
+const UpdateProduct = ({ product }: UpdateProductProps) => {
   const [name, setName] = useState("");
   const [images, setImages] = useState("");
   const [price, setPrice] = useState("");
@@ -53,17 +52,25 @@ const UpdateProduct: React.FC<UpdateProductProps> = ({ product }) => {
 
   console.log(isSuccess);
 
+  if (Number(ratting) > 5) {
+    setRatting("5");
+  }
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    console.log(ratting);
+
     const taskDetails = {
-      name,
-      images,
-      price,
-      category,
-      stockQuantity,
-      ratting,
-      description,
+      name: name || product.name,
+      images: images || product.images,
+      price: price ? parseInt(price) : product.price,
+      category: category || product.category,
+      stockQuantity: stockQuantity
+        ? parseInt(stockQuantity)
+        : product.stockQuantity,
+      ratting: ratting ? parseInt(ratting) : product.ratting,
+      description: description || product.description,
     };
 
     const updateDate = {

@@ -2,7 +2,7 @@ import { useDeleteProductMutation } from "@/redux/api/baseApi";
 import { Button } from "../ui/button";
 import UpdateProduct from "./UpdateProduct";
 import Swal from "sweetalert2";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 interface Product {
   _id: string;
@@ -15,13 +15,11 @@ interface Product {
   description: string;
 }
 
-// Define the component props type
-interface UpdateProductProps {
+type UpdateProductProps = {
   product: Product;
-}
+};
 
-const ProductManagementCard: React.FC<UpdateProductProps> = ({ product }) => {
-  console.log(product);
+const ProductManagementCard = ({ product }: UpdateProductProps) => {
   const { _id, name, images, price, category } = product;
   const [deleteProduct, { isError, isSuccess }] = useDeleteProductMutation();
 
@@ -59,7 +57,7 @@ const ProductManagementCard: React.FC<UpdateProductProps> = ({ product }) => {
   };
 
   return (
-    <div className="bg-white rounded-md flex justify-between items-center p-3 border text-center">
+    <div className="bg-white rounded-md md:flex justify-between items-center p-3 border text-center space-y-3 md:space-y-0">
       <div className="flex-1 flex justify-center items-center">
         <img className="w-40 h-40 mr-10" src={images} alt="" />
       </div>

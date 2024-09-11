@@ -49,7 +49,6 @@ const AddProduct = () => {
         icon: "error",
         title: "Oops...",
         text: "Failed to add product. Please try again.",
-        footer: '<a href="#">Why do I have this issue?</a>',
       });
     }
   }, [isSuccess, isError]);
@@ -155,7 +154,7 @@ const AddProduct = () => {
                 Ratting
               </Label>
               <Input
-                placeholder="Product ratting"
+                placeholder="Product ratting out of 5"
                 onBlur={(e) => setRatting(e.target.value)}
                 id="ratting"
                 className="col-span-3"

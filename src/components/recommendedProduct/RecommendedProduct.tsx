@@ -44,11 +44,11 @@ const RecommendedProduct = () => {
                 ?.map((product: TProductCardProps) => (
                   <CarouselItem
                     key={product._id}
-                    className="md:basis-1/2 lg:basis-1/3"
+                    className="md:basis-1/2 lg:basis-1/4 mx-auto"
                   >
-                    <div className="p-1">
-                      <Card>
-                        <CardContent className="flex items-center justify-center p-6">
+                    <div className="p-1 flex flex-col h-full">
+                      <Card className="flex flex-col h-full">
+                        <CardContent className="p-2 flex-grow">
                           <ProductCard {...product} />
                         </CardContent>
                       </Card>

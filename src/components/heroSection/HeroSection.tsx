@@ -6,7 +6,7 @@ const HeroSection = () => {
     <>
       <div className="md:flex gap-4 justify-center items-center">
         <div className="flex-1">
-          <h1 className="text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-5xl font-bold mb-6">
             Explore the Great Outdoors with Wilderness Wonders
           </h1>
           <h3 className="text-lg font-serif mb-2">

@@ -1,17 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  removeFromCart,
-  TCart,
-  updateQuantity,
-} from "@/redux/features/cartSlice";
+import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
-import React from "react";
+import { TRootCartState } from "@/utils/typeOfCarts";
 
-const Carts: React.FC = () => {
-  const cart = useSelector(
-    (state: { cart: { carts: TCart[] } }) => state.cart.carts
-  );
+const Carts = () => {
+  const cart = useSelector((state: TRootCartState) => state.cart.carts);
 
   const dispatch = useDispatch();
 

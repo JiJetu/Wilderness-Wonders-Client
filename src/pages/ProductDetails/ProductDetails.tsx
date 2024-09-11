@@ -16,12 +16,11 @@ const ProductDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetSingleProductQuery(id);
   const dispatch = useAppDispatch();
-  const [updateProduct, { isSuccess }] = useUpdateProductMutation();
   const cart = useAppSelector((state) => state.cart.carts);
   const [isDisabled, setIsDisabled] = useState(false);
   const productInCart = cart.find((item) => item._id === id);
 
-  console.log(isSuccess);
+  console.log(productInCart?.oderQuantity, productInCart?.productQuantity);
 
   useEffect(() => {
     if (productInCart) {
@@ -45,7 +44,7 @@ const ProductDetails = () => {
         pName: name,
         price: Number(price),
         oderQuantity: 1,
-        productQuantity: Number(stockQuantity) - 1,
+        productQuantity: Number(stockQuantity),
         description: description,
         category: category,
         images: images,
@@ -56,7 +55,7 @@ const ProductDetails = () => {
         _id: id,
         product: { stockQuantity: stockQuantity - 1 },
       };
-      updateProduct(updateData);
+      // updateProduct(updateData);
 
       Swal.fire({
         position: "top-end",
@@ -78,7 +77,7 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <div className="md:flex gap-5 mb-5">
+      <div className="lg:flex gap-5 mb-5">
         <div className="flex-1">
           <ReactImageMagnifier
             srcPreview={images}
@@ -90,7 +89,18 @@ const ProductDetails = () => {
         </div>
         <div className="w-2/6 space-y-2">
           <h1 className="text-3xl font-bold">{name}</h1>
-          <p className="text-base font-semibold">Stock: {stockQuantity}</p>
+          {stockQuantity > 0 ? (
+            <p className="text-lg font-semibold">
+              Stock:{" "}
+              {productInCart
+                ? stockQuantity - productInCart.oderQuantity
+                : stockQuantity}
+            </p>
+          ) : (
+            <p className="text-red-500 font-extrabold text-base">
+              Out of the stock
+            </p>
+          )}
           <Rating rating={Number(ratting)} />
           <p className="text-lg font-semibold space-x-3">
             <span>Category:</span>
