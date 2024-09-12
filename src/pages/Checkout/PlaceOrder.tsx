@@ -8,18 +8,57 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useUpdateProductMutation } from "@/redux/api/baseApi";
-import { useAppSelector } from "@/redux/hooks";
+import { removeFromCart } from "@/redux/features/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Loading from "@/utils/Loading";
 import { TPlaceOrderProps, TRootCartState } from "@/utils/typeOfCarts";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PlaceOrder = ({ isDisabled }: TPlaceOrderProps) => {
   const [updateProduct, { isLoading }] = useUpdateProductMutation();
   const cart = useAppSelector((state: TRootCartState) => state.cart.carts);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const total = cart.reduce(
     (acc: number, item) => acc + item.price * item.oderQuantity,
     0
   );
+
+  const handleCD = async () => {
+    try {
+      for (const items of cart) {
+        const updateData = {
+          _id: items._id,
+          product: {
+            stockQuantity: items.productQuantity - items.oderQuantity,
+          },
+        };
+
+        await updateProduct(updateData).unwrap();
+        await dispatch(removeFromCart(items._id as string));
+      }
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Order succeeded",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate("/product");
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Order failed",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -54,11 +93,11 @@ const PlaceOrder = ({ isDisabled }: TPlaceOrderProps) => {
         <div className="flex justify-between items-center">
           <div className="text-center space-y-3">
             <h1>Cash on Delivery</h1>
-            <Button>Place Order</Button>
+            <Button onClick={handleCD}>Place Order</Button>
           </div>
           <div className="text-center space-y-3">
             <h1>Stripe</h1>
-            <Button>Place Order</Button>
+            <Button disabled>Place Order</Button>
           </div>
         </div>
       </DialogContent>

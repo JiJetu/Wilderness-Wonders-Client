@@ -20,13 +20,7 @@ const Product = () => {
     sortOrder,
   };
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useGetProductQuery(queryParams);
-
-  console.log(isError);
+  const { data: products, isLoading } = useGetProductQuery(queryParams);
 
   if (isLoading) {
     return <Loading />;
@@ -57,7 +51,6 @@ const Product = () => {
           <input
             type="range"
             value={price}
-            defaultValue={price}
             onChange={(e) => setPrice(Number(e.target.value))}
             min={1}
             max={2000}

@@ -1,9 +1,6 @@
 import Rating from "@/components/share/Rating";
 import { Button } from "@/components/ui/button";
-import {
-  useGetSingleProductQuery,
-  useUpdateProductMutation,
-} from "@/redux/api/baseApi";
+import { useGetSingleProductQuery } from "@/redux/api/baseApi";
 import { addToCart } from "@/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Loading from "@/utils/Loading";
@@ -51,11 +48,6 @@ const ProductDetails = () => {
       };
 
       dispatch(addToCart(cartInfo));
-      const updateData = {
-        _id: id,
-        product: { stockQuantity: stockQuantity - 1 },
-      };
-      // updateProduct(updateData);
 
       Swal.fire({
         position: "top-end",

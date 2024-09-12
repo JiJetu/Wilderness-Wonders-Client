@@ -1,5 +1,4 @@
 import { useState, FormEvent, useEffect } from "react";
-import Swal from "sweetalert2";
 import PlaceOrder from "./PlaceOrder";
 
 const Checkout = () => {
@@ -17,14 +16,6 @@ const Checkout = () => {
 
   const handleAddProduct = async (e: FormEvent) => {
     e.preventDefault();
-
-    // Swal.fire({
-    //   position: "top-end",
-    //   icon: "success",
-    //   title: "Product added to cart successfully!",
-    //   showConfirmButton: false,
-    //   timer: 1500,
-    // });
   };
 
   return (
@@ -33,8 +24,8 @@ const Checkout = () => {
         Checkout
       </h2>
       <form onSubmit={handleAddProduct}>
-        <div className="flex gap-6 mb-6">
-          <div className="form-control w-1/2">
+        <div className="md:flex gap-6 mb-6">
+          <div className="form-control md:w-1/2">
             <label className="label">
               <p className="label-text">Name</p>
             </label>
@@ -47,7 +38,7 @@ const Checkout = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <div className="form-control w-1/2">
+          <div className="form-control md:w-1/2">
             <label className="label">
               <p className="label-text">Email</p>
             </label>
@@ -61,8 +52,8 @@ const Checkout = () => {
             />
           </div>
         </div>
-        <div className="flex gap-6 mb-6">
-          <div className="form-control w-1/2">
+        <div className="md:flex gap-6 mb-6">
+          <div className="form-control md:w-1/2">
             <label className="label">
               <p className="label-text">Phone Number</p>
             </label>
@@ -75,7 +66,7 @@ const Checkout = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <div className="form-control w-1/2">
+          <div className="form-control md:w-1/2">
             <label className="label">
               <p className="label-text">Delivery address</p>
             </label>
