@@ -70,9 +70,11 @@ const PlaceOrder = ({ isDisabled }: TPlaceOrderProps) => {
         <Button
           disabled={isDisabled}
           type="submit"
-          className={`text-[#06e7c2] border-2  mb-5 ${
-            isDisabled ? "text-slate-500" : "bg-white border-cyan-500"
-          } w-full rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 hover:text-white`}
+          className={`text-white border-2  mb-5 ${
+            isDisabled
+              ? "text-slate-500"
+              : "bg-gradient-to-r from-cyan-500 to-yellow-500 border-cyan-500"
+          } w-full rounded-xl hover:bg-gradient-to-r hover:from-white hover:to-white hover:text-[#06e7c2]`}
         >
           Submit
         </Button>

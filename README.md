@@ -1,18 +1,18 @@
 <div align="center">
-  <h1>Wilderness Wonders Client</h1>
+  <h1>Campers Shop Client</h1>
 </div>
 
 ---
 
-# Wilderness Wonders Client
+# Campers Shop Client
 
 ## Introduction
 
-The Wilderness Wonders Client is the frontend application for the Wilderness Wonders e-commerce platform. This project is designed to provide a seamless user experience for browsing and purchasing camping gear and related products.
+The Campers Shop Client is the frontend application for the Campers Shop e-commerce platform. This project is designed to provide a seamless user experience for browsing and purchasing camping gear and related products.
 
 ## Project Description
 
-This client-side application is built with modern React tools and libraries to offer a responsive and interactive user interface. It connects to the Wilderness Wonders backend to manage and display product information, handle user interactions, and process orders.
+This client-side application is built with modern React tools and libraries to offer a responsive and interactive user interface. It connects to the Campers Shop backend to manage and display product information, handle user interactions, and process orders.
 
 ## Features
 

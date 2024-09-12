@@ -3,11 +3,18 @@ import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
 import { TRootCartState } from "@/utils/typeOfCarts";
+import { useEffect, useState } from "react";
 
 const Carts = () => {
   const cart = useSelector((state: TRootCartState) => state.cart.carts);
-
+  const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setIsDisabled(false);
+    }
+  }, [cart]);
 
   const handleRemove = (id: string) => {
     dispatch(removeFromCart(id));
@@ -65,11 +72,17 @@ const Carts = () => {
           <div className="mt-6 text-2xl font-bold">
             <p>Total: ${total.toFixed(2)}</p>
           </div>
-          <NavLink to={"/checkout"}>
-            <Button className="bg-[#0ccaab] px-10 text-white rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 my-4">
+          {isDisabled ? (
+            <Button disabled={isDisabled} className="px-10 rounded-xl my-4">
               Checkout
             </Button>
-          </NavLink>
+          ) : (
+            <NavLink to={"/checkout"}>
+              <Button className="bg-[#0ccaab] px-10 text-white rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 my-4">
+                Checkout
+              </Button>
+            </NavLink>
+          )}
         </div>
       </div>
     </div>
