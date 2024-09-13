@@ -24,14 +24,30 @@ import {
 } from "../ui/select";
 import Swal from "sweetalert2";
 
+const defaultProductValue = {
+  name: "Airzone Active 26L Backpack",
+  images:
+    "https://adventureshop.mt/cdn/shop/files/Airzone_Active26_Black_FTF_25_BLK.jpg?v=1718192898&width=5000",
+  price: "500",
+  category: "backpacks",
+  stockQuantity: "10",
+  ratting: "5",
+  description:
+    "The Airzone Active 26L Backpack is the ideal choice for adventurers seeking a compact, versatile, and high-performance daypack. Perfectly designed for a range of outdoor activities, this backpack seamlessly blends comfort, durability, and functionality. With a spacious 26-liter capacity, it offers ample room for your essentials, making it suitable for hiking, commuting, or daily use. The Airzone Active features a sleek, ergonomic design with an adjustable, padded harness system that ensures a snug, comfortable fit even during extended wear. Its ventilated back panel promotes airflow, keeping you cool and dry as you move. Constructed from robust, weather-resistant materials, this backpack is built to withstand the elements and rugged terrain, while its multiple compartments and pockets provide organized storage for everything from water bottles to small gear. Lightweight yet sturdy, the Airzone Active 26L Backpack is the perfect companion for those who demand both style and performance in their outdoor gear.",
+};
+
 const AddProduct = () => {
-  const [name, setName] = useState("");
-  const [images, setImages] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
-  const [stockQuantity, setStockQuantity] = useState("");
-  const [ratting, setRatting] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState(defaultProductValue.name);
+  const [images, setImages] = useState(defaultProductValue.images);
+  const [price, setPrice] = useState(defaultProductValue.price);
+  const [category, setCategory] = useState(defaultProductValue.category);
+  const [stockQuantity, setStockQuantity] = useState(
+    defaultProductValue.stockQuantity
+  );
+  const [ratting, setRatting] = useState(defaultProductValue.ratting);
+  const [description, setDescription] = useState(
+    defaultProductValue.description
+  );
 
   const [addProduct, { isError, isSuccess }] = useAddProductMutation();
 
@@ -89,6 +105,7 @@ const AddProduct = () => {
               </Label>
               <Input
                 placeholder="Product name"
+                defaultValue={name}
                 onBlur={(e) => setName(e.target.value)}
                 id="name"
                 className="col-span-3"
@@ -100,6 +117,7 @@ const AddProduct = () => {
               </Label>
               <Input
                 placeholder="Product image URL"
+                defaultValue={images}
                 type="url"
                 onBlur={(e) => setImages(e.target.value)}
                 id="image"
@@ -112,6 +130,7 @@ const AddProduct = () => {
               </Label>
               <Input
                 placeholder="Product price in $"
+                defaultValue={price}
                 onBlur={(e) => setPrice(e.target.value)}
                 id="price"
                 className="col-span-3"
@@ -119,7 +138,10 @@ const AddProduct = () => {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label className="text-right">Category</Label>
-              <Select onValueChange={(value) => setCategory(value)}>
+              <Select
+                defaultValue={category}
+                onValueChange={(value) => setCategory(value)}
+              >
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
@@ -144,6 +166,7 @@ const AddProduct = () => {
               </Label>
               <Input
                 placeholder="Product stock quantity"
+                defaultValue={stockQuantity}
                 onBlur={(e) => setStockQuantity(e.target.value)}
                 id="stock-quantity"
                 className="col-span-3"
@@ -154,6 +177,10 @@ const AddProduct = () => {
                 Ratting
               </Label>
               <Input
+                type="number"
+                min={1}
+                max={5}
+                defaultValue={ratting}
                 placeholder="Product ratting out of 5"
                 onBlur={(e) => setRatting(e.target.value)}
                 id="ratting"
@@ -165,6 +192,7 @@ const AddProduct = () => {
                 Description
               </Label>
               <Textarea
+                defaultValue={description}
                 onBlur={(e) => setDescription(e.target.value)}
                 id="description"
                 className="col-span-3"

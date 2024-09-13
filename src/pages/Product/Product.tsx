@@ -32,6 +32,7 @@ const Product = () => {
     setCategory("");
     setSortOrder("asc");
   };
+
   return (
     <div className="md:flex gap-4">
       <div className="md:w-[20%] min-h-screen bg-base-200 p-4 rounded-r-lg pt-16">
@@ -85,7 +86,7 @@ const Product = () => {
           <input
             type="text"
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="search here"
+            placeholder={`Please search here....`}
             className="input input-bordered w-full max-w-[300px]"
           />
           <Filter category={category} setCategory={setCategory} />

@@ -1,11 +1,10 @@
-import BannerImage from "../../assets/images/camper-2.jpg";
 import { Button } from "../ui/button";
 
 const HeroSection = () => {
   return (
     <>
       <div className="md:flex gap-4 justify-center items-center">
-        <div className="flex-1">
+        <div className="flex-1" data-aos="zoom-in-up" data-aos-duration="1000">
           <h1 className="text-2xl md:text-5xl font-bold mb-6">
             Explore the Great Outdoors with Wilderness Wonders
           </h1>
@@ -24,7 +23,15 @@ const HeroSection = () => {
           </Button>
         </div>
         <div className="flex-1 mt-8 md:mt-0">
-          <img src={BannerImage} alt="" />
+          <img
+            className="w-full rounded-lg"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            src={
+              "https://campspot.blog/wp-content/uploads/2023/04/dark-skies-camping-header.jpg"
+            }
+            alt="img"
+          />
         </div>
       </div>
     </>

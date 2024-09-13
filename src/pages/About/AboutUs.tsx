@@ -9,6 +9,8 @@ const AboutUs = () => {
       photo:
         "https://scontent.fdac165-1.fna.fbcdn.net/v/t39.30808-6/447199919_2414393628951357_4266480113932234768_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvwMXMGc9HRM4Q1KknKa6lg2akRaXlFC-DZqRFpeUUL4J0Vc-JdlZDO-zOiGKPQJT502HNREPQa0ioAZob6rHH&_nc_ohc=U_k5I4qcGVUQ7kNvgEr1cq6&_nc_ht=scontent.fdac165-1.fna&oh=00_AYDDl_eF9L0orLX1oPzDcsCdyJhFqHKPYYyJ8MsxgjTxvw&oe=66E639DA",
       bio: "Jaoad has over 10 years of experience in project management, specializing in delivering high-quality projects on time and within budget.",
+      aos: "flip-left",
+      duration: 2500,
     },
     {
       name: "John Smith",
@@ -16,6 +18,8 @@ const AboutUs = () => {
       photo:
         "https://img.pikbest.com/photo/20240626/portrait-of-a-happy-young-employee-sits-at-his-desk-in-modern-office-setting_10637689.jpg!f305cw",
       bio: "John is a passionate developer with expertise in full-stack development and a knack for solving complex technical challenges.",
+      aos: "zoom-in",
+      duration: 2000,
     },
     {
       name: "Emily Johnson",
@@ -23,6 +27,8 @@ const AboutUs = () => {
       photo:
         "https://img.freepik.com/free-photo/blue-eyed-business-woman-white-blouse-standing-confident-pose-with-her-international-co-workers-indoor-portrait-asian-african-employees-with-blonde-lady_197531-3756.jpg",
       bio: "Emily is a creative UX designer with a keen eye for detail and a commitment to crafting intuitive and user-friendly interfaces.",
+      aos: "flip-right",
+      duration: 2500,
     },
   ];
 
@@ -148,6 +154,8 @@ const AboutUs = () => {
               <div
                 key={index}
                 className="card bg-white md:shadow-md rounded-lg p-6"
+                data-aos={member.aos}
+                data-aos-duration={`${member.duration}`}
               >
                 <div className="flex items-center justify-center mb-4">
                   <img

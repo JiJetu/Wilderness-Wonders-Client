@@ -48,7 +48,11 @@ const RecommendedProduct = () => {
                   >
                     <div className="p-1 flex flex-col h-full">
                       <Card className="flex flex-col h-full">
-                        <CardContent className="p-2 flex-grow">
+                        <CardContent
+                          className="p-2 flex-grow"
+                          data-aos="fade-up-right"
+                          data-aos-duration="1500"
+                        >
                           <ProductCard {...product} />
                         </CardContent>
                       </Card>

@@ -33,11 +33,15 @@ const FeaturedProducts = () => {
           className="mx-5 md:mx-14"
         >
           {products?.data.length <= 11 ? (
-            <div className="bg-white text-2xl font-bold p-5 flex justify-center items-center">
+            <div
+              data-aos="zoom-out"
+              data-aos-duration="1500"
+              className="bg-white text-2xl font-bold p-5 flex justify-center items-center"
+            >
               <p>There is no featured data, add more data</p>
             </div>
           ) : (
-            <CarouselContent>
+            <CarouselContent data-aos="zoom-out" data-aos-duration="1500">
               {products?.data
                 ?.slice(10, 20)
                 ?.map((product: TProductCardProps) => (

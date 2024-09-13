@@ -4,23 +4,56 @@ import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
 import { TRootCartState } from "@/utils/typeOfCarts";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const Carts = () => {
   const cart = useSelector((state: TRootCartState) => state.cart.carts);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [quantityChange, setQuantityChange] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (cart.length > 0) {
+    if (
+      cart.length > 0 &&
+      cart.every((item) => item.productQuantity >= quantityChange)
+    ) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
-  }, [cart]);
+  }, [cart, quantityChange]);
 
   const handleRemove = (id: string) => {
-    dispatch(removeFromCart(id));
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, remove it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(removeFromCart(id));
+          Swal.fire({
+            title: "Removed!",
+            text: "Item has been remove from the cart.",
+            icon: "success",
+          });
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+      });
+    }
   };
 
   const handleQuantityChange = (id: string, quantity: number) => {
+    setQuantityChange(quantity);
     dispatch(updateQuantity({ _id: id, quantity }));
   };
 
@@ -33,21 +66,26 @@ const Carts = () => {
     <div className="container mx-auto mt-4">
       <h2 className="text-center text-5xl font-bold text-black mb-6">Cart</h2>
       <div className="flex flex-col gap-6">
-        {cart.map((item) => (
-          <div key={item._id} className="flex gap-6 mb-6 border p-4 rounded">
-            <img src={item.images} alt={item.pName} className="w-24 h-24" />
+        {cart?.map((item) => (
+          <div key={item._id} className="md:flex gap-6 mb-6 border p-4 rounded">
+            <img
+              src={item.images}
+              alt={item.pName}
+              className="w-full md:w-24 h-24"
+            />
             <div className="flex-grow">
               <h3 className="text-2xl font-bold">{item.pName}</h3>
-              <p className="text-base">Price: ${item.price}</p>
+              <p className="text-base">
+                Price:{" "}
+                <span className="text-lg font-extrabold">${item.price}</span>
+              </p>
               <p className="text-base">Category: {item.category}</p>
-              <p className="text-base mb-2">Description: {item.description}</p>
               <div className="flex items-center gap-2">
                 <label>Quantity:</label>
                 <input
                   type="number"
                   value={item.oderQuantity}
                   min={1}
-                  max={item.productQuantity}
                   onChange={(e) =>
                     handleQuantityChange(
                       item._id as string,
@@ -67,19 +105,34 @@ const Carts = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-end">
+      <div className="flex md:justify-end">
         <div>
+          <div>
+            {cart?.map((item) =>
+              item.productQuantity >= item.oderQuantity ? (
+                <h1 className="text-base font-bold text-blue-500 md:text-end">
+                  {item.pName} - ${item.price} * {item.oderQuantity} = $
+                  {item.price * item.oderQuantity}
+                </h1>
+              ) : (
+                <h1 className="text-base font-bold text-red-500">
+                  {item.pName} - ${item.price} * {item.oderQuantity} (max{" - "}
+                  {item.productQuantity}) = {item.price * item.oderQuantity}
+                </h1>
+              )
+            )}
+          </div>
           <div className="mt-6 text-2xl font-bold">
             <p>Total: ${total.toFixed(2)}</p>
           </div>
           {isDisabled ? (
             <Button disabled={isDisabled} className="px-10 rounded-xl my-4">
-              Checkout
+              Place Order
             </Button>
           ) : (
             <NavLink to={"/checkout"}>
               <Button className="bg-[#0ccaab] px-10 text-white rounded-xl hover:bg-gradient-to-r from-cyan-500 to-yellow-500 my-4">
-                Checkout
+                Place Order
               </Button>
             </NavLink>
           )}

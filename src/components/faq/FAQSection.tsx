@@ -11,7 +11,12 @@ const FAQSection = () => {
       <h1 className="text-4xl font-bold">
         <span className="text-[#21c4a8]">Frequently Asked Questions</span>
       </h1>
-      <div className="mt-6">
+      <div
+        className="mt-6"
+        data-aos="fade-down"
+        data-aos-easing="linear"
+        data-aos-duration="1000"
+      >
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-xl font-semibold mb-2">

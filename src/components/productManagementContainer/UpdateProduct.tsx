@@ -183,6 +183,9 @@ const UpdateProduct = ({ product }: UpdateProductProps) => {
                 Ratting
               </Label>
               <Input
+                type="number"
+                min={1}
+                max={5}
                 defaultValue={product.ratting}
                 onBlur={(e) => setRatting(e.target.value)}
                 id="ratting"

@@ -69,18 +69,16 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <div className="lg:flex gap-5 mb-5">
-        <div className="flex-1">
+      <div className="lg:flex justify-evenly items-center mb-5">
+        <div className="flex-1 flex justify-center items-center max-h-[400px] md:max-h-max max-w-[800px] md:max-w-max overflow-hidden">
           <ReactImageMagnifier
             srcPreview={images}
             srcOriginal={images}
-            height={400}
-            width={800}
             className="max-w-xs bg-gray-200 rounded-lg md:max-w-none max-h-80 md:max-h-none"
           />
         </div>
-        <div className="w-2/6 space-y-2">
-          <h1 className="text-3xl font-bold">{name}</h1>
+        <div className="md:w-2/6 space-y-2">
+          <h1 className="text-xl md:text-3xl font-bold">{name}</h1>
           {stockQuantity > 0 ? (
             <p className="text-lg font-semibold">
               Stock:{" "}
@@ -115,20 +113,6 @@ const ProductDetails = () => {
       <p className="text-xl font-bold">Description:</p>
       <div className="space-y-5 my-5 text-base md:text-lg text-gray-500 w-full">
         <p>{description}</p>
-        <p>
-          Inspired by leading outdoor retailers, Campers Shop combines a
-          visually striking design with practical functionality. Our website
-          offers an immersive shopping experience with detailed product
-          descriptions, vibrant images, and easy navigation, ensuring you can
-          quickly locate the items you need for your next adventure.
-        </p>
-        <p>
-          Whether you're planning a weekend getaway or a cross-country
-          expedition, Campers Shop provides the tools and accessories you need
-          to make your camping experience enjoyable and hassle-free. Explore our
-          curated collections and discover why Campers Shop is the ultimate
-          destination for camping enthusiasts.
-        </p>
       </div>
     </div>
   );
