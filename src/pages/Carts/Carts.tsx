@@ -10,7 +10,6 @@ const Carts = () => {
   // cart state from the redux store
   const cart = useSelector((state: TRootCartState) => state.cart.carts);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [quantityChange, setQuantityChange] = useState(0);
   const dispatch = useDispatch();
 
   // only enable the place order button-
@@ -21,13 +20,13 @@ const Carts = () => {
   useEffect(() => {
     if (
       cart.length > 0 &&
-      cart.every((item) => item.productQuantity >= quantityChange)
+      cart.every((item) => item.productQuantity >= item.oderQuantity)
     ) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [cart, quantityChange]);
+  }, [cart]);
 
   // remove order function
   const handleRemove = (id: string) => {
@@ -61,7 +60,6 @@ const Carts = () => {
 
   // changing order quantity function and update cart item quantity through redux query hooks
   const handleQuantityChange = (id: string, quantity: number) => {
-    setQuantityChange(quantity);
     dispatch(updateQuantity({ _id: id, quantity }));
   };
 
@@ -115,7 +113,7 @@ const Carts = () => {
           </div>
         ))}
       </div>
-      <div className="flex md:justify-end">
+      <div className="flex md:justify-end text-end">
         <div>
           <div>
             {cart?.map((item) =>
@@ -135,6 +133,7 @@ const Carts = () => {
           <div className="mt-6 text-2xl font-bold">
             <p>Total: ${total.toFixed(2)}</p>
           </div>
+
           {isDisabled ? (
             <Button disabled={isDisabled} className="px-10 rounded-xl my-4">
               Place Order
