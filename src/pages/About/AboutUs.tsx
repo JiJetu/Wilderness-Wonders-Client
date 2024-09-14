@@ -34,6 +34,7 @@ const AboutUs = () => {
 
   return (
     <div className="p-8">
+      {/* contact info and showing map section */}
       <section className="mb-8 md:flex items-center gap-8">
         <div className="md:w-[30%]">
           <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
@@ -96,6 +97,7 @@ const AboutUs = () => {
           ></iframe>
         </div>
       </section>
+      {/* describing about our goal section */}
       <section>
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 md:pr-4 mb-6">
@@ -146,6 +148,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
+      {/* team member section */}
       <section className="py-16 md:bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Meet Our Team</h2>

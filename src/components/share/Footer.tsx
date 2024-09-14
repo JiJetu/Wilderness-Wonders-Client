@@ -3,6 +3,7 @@ const Footer = () => {
     <div className="text-center bg-base-200">
       <footer className="footer p-10">
         <aside>
+          {/* displaying logo and name and a form */}
           <h1 className="xl font-semibold font-serif">
             <div className="flex items-center gap-3">
               <img
@@ -34,6 +35,7 @@ const Footer = () => {
         </aside>
         <nav className="text-black">
           <h6 className="footer-title">Social</h6>
+          {/* showing social icons with link */}
           <div className="grid grid-flow-col gap-4">
             <a href="https://x.com/CampersShop">
               <svg
@@ -71,6 +73,7 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
+      {/* ownership section with dynamic year */}
       <div>
         <span className="text-[#70E6D2] font-extrabold">Wilderness</span>
         Wonders ©{new Date().getFullYear()} Created by{" "}

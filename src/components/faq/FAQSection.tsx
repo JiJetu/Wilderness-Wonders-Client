@@ -11,6 +11,8 @@ const FAQSection = () => {
       <h1 className="text-4xl font-bold">
         <span className="text-[#21c4a8]">Frequently Asked Questions</span>
       </h1>
+
+      {/* showing all faq */}
       <div
         className="mt-6"
         data-aos="fade-down"
@@ -18,6 +20,7 @@ const FAQSection = () => {
         data-aos-duration="1000"
       >
         <Accordion type="single" collapsible className="w-full">
+          {/* first faq */}
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-xl font-semibold mb-2">
               What types of camping products do you offer?
@@ -29,6 +32,7 @@ const FAQSection = () => {
               ensure your comfort and safety.
             </AccordionContent>
           </AccordionItem>
+          {/* second faq */}
           <AccordionItem value="item-2">
             <AccordionTrigger className="text-xl font-semibold mb-2">
               How can I track my order?
@@ -39,6 +43,7 @@ const FAQSection = () => {
               carrier's website to track the status of your shipment.
             </AccordionContent>
           </AccordionItem>
+          {/* third faq */}
           <AccordionItem value="item-3">
             <AccordionTrigger className="text-xl font-semibold mb-2">
               What is your return policy?

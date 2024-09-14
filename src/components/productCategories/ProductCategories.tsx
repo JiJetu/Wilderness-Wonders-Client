@@ -2,6 +2,7 @@ import { productCategory } from "@/utils/typeOfProduct";
 import { Button } from "../ui/button";
 
 const ProductCategories = () => {
+  // categories components
   const categories = [
     {
       id: 1,
@@ -56,6 +57,8 @@ const ProductCategories = () => {
       <h1 className="text-4xl font-bold">
         Explore Our <span className="text-[#21c4a8]">Product Categories</span>
       </h1>
+
+      {/* showing all categories */}
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-8 lg:gap-4 mt-6"
         data-aos="fade-up-left"

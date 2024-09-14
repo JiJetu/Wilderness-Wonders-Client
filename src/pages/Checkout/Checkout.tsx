@@ -8,6 +8,7 @@ const Checkout = () => {
   const [userAddress, setUserAddress] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
 
+  // if al required field contain necessary info show submit button
   useEffect(() => {
     if (userEmail && userNo && userName && userAddress) {
       setIsDisabled(false);
@@ -23,6 +24,7 @@ const Checkout = () => {
       <h2 className="text-center text-5xl font-bold text-black mb-6">
         Checkout
       </h2>
+      {/* form for getting user info for order  */}
       <form onSubmit={handleAddProduct}>
         <div className="md:flex gap-6 mb-6">
           <div className="form-control md:w-1/2">
@@ -80,6 +82,7 @@ const Checkout = () => {
             />
           </div>
         </div>
+        {/* display pop up for payment */}
         <PlaceOrder isDisabled={isDisabled} />
       </form>
     </div>

@@ -20,9 +20,13 @@ type UpdateProductProps = {
 };
 
 const ProductManagementCard = ({ product }: UpdateProductProps) => {
+  // destructure product data
   const { _id, name, images, price, category } = product;
+
+  // delete product using redux hook
   const [deleteProduct, { isError, isSuccess }] = useDeleteProductMutation();
 
+  //  display success or error messages based on the mutation outcome
   useEffect(() => {
     if (isSuccess) {
       Swal.fire({
@@ -40,6 +44,7 @@ const ProductManagementCard = ({ product }: UpdateProductProps) => {
     }
   }, [isSuccess, isError]);
 
+  // delete product function
   const handleDeletedProduct = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -65,6 +70,7 @@ const ProductManagementCard = ({ product }: UpdateProductProps) => {
       <p className="flex-1">$ {price}</p>
       <p className="flex-1">{category}</p>
       <div className="space-x-5 flex-1">
+        {/* delete button */}
         <Button
           onClick={handleDeletedProduct}
           className="bg-red-500 rounded-xl"
@@ -85,6 +91,7 @@ const ProductManagementCard = ({ product }: UpdateProductProps) => {
           </svg>
         </Button>
 
+        {/* update button */}
         <UpdateProduct product={product} />
       </div>
     </div>

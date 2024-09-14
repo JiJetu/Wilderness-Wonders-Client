@@ -4,7 +4,10 @@ import { useAppSelector } from "@/redux/hooks";
 import { TRootCartState } from "@/utils/typeOfCarts";
 
 const Navbar = () => {
+  // fetching cart from the redux store
   const cart = useAppSelector((state: TRootCartState) => state.cart.carts);
+
+  // navbar components
   const navbar = (
     <>
       <li>
@@ -95,6 +98,8 @@ const Navbar = () => {
               {navbar}
             </ul>
           </div>
+
+          {/* logo and name */}
           <NavLink
             to={"/"}
             className="text-base md:text-xl font-semibold font-serif"

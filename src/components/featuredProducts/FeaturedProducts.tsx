@@ -16,6 +16,7 @@ import { TProductCardProps } from "@/utils/typeOfProduct";
 const FeaturedProducts = () => {
   const { data: products, isLoading } = useGetProductQuery("");
 
+  // loading state
   if (isLoading) {
     return <Loading />;
   }
@@ -25,6 +26,8 @@ const FeaturedProducts = () => {
       <h1 className="text-4xl font-bold">
         <span className="text-[#21c4a8]">Featured</span> Products
       </h1>
+
+      {/* displaying 11 to 20 number of data with carousel or showing reasonable message if there is no product data */}
       <div className="relative w-full mt-6">
         <Carousel
           opts={{
@@ -64,6 +67,8 @@ const FeaturedProducts = () => {
           {products?.data.length >= 11 ? <CarouselPrevious /> : ""}
           {products?.data.length >= 11 ? <CarouselNext /> : ""}
         </Carousel>
+
+        {/* showing view more button to redirect to the product page */}
         {products?.data.length >= 11 ? (
           <div className="text-center">
             <NavLink to={"/product"}>

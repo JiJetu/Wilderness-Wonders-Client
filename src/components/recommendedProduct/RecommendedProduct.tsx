@@ -14,8 +14,10 @@ import { NavLink } from "react-router-dom";
 import { TProductCardProps } from "@/utils/typeOfProduct";
 
 const RecommendedProduct = () => {
+  // fetching products data using a redux query hook.
   const { data: products, isLoading } = useGetProductQuery(undefined);
 
+  // loading state
   if (isLoading) {
     return <Loading />;
   }
@@ -26,6 +28,8 @@ const RecommendedProduct = () => {
         Top Picks for Your
         <span className="text-[#21c4a8]">Next Adventure</span>
       </h1>
+
+      {/* displaying first 10 data with carousel or showing reasonable message if there is no product data */}
       <div className="relative w-full mt-6">
         <Carousel
           opts={{
@@ -64,6 +68,8 @@ const RecommendedProduct = () => {
           {products?.data.length > 0 ? <CarouselPrevious /> : ""}
           {products?.data.length > 0 ? <CarouselNext /> : ""}
         </Carousel>
+
+        {/* showing view more button to redirect to the product page */}
         {products?.data.length > 0 ? (
           <div className="text-center">
             <NavLink to={"/product"}>

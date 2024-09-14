@@ -5,8 +5,10 @@ import Loading from "@/utils/Loading";
 import { TProductCardProps } from "@/utils/typeOfProduct";
 
 const ProductManagementContainer = () => {
+  // fetch the products data using a redux query hook
   const { data: products, isLoading } = useGetProductQuery([]);
 
+  // loading state
   if (isLoading) {
     return <Loading />;
   }
@@ -17,9 +19,11 @@ const ProductManagementContainer = () => {
         Product Management
       </h1>
       <div className="my-4">
+        {/* add product section */}
         <div className="flex justify-center md:justify-end">
           <AddProduct />
         </div>
+        {/* displaying added data in a table format */}
         <div className="bg-gradient-to-r from-cyan-500 to-yellow-500 w-full h-full rounded-xl p-[5px] mt-5">
           {products?.data.length === 0 ? (
             <div className="bg-white text-2xl font-bold p-5 flex justify-center items-center">

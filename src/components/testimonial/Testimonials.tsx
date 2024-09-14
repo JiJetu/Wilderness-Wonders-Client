@@ -9,6 +9,7 @@ import {
 import image from "../../assets/images/camper-2.jpg";
 
 const Testimonials = () => {
+  // reviews components
   const reviews = [
     {
       id: 1,
@@ -56,6 +57,7 @@ const Testimonials = () => {
     <div className="mt-12 w-full">
       <Carousel className="mx-5 h-full md:mx-14">
         <CarouselContent>
+          {/* displaying reviews with carousel */}
           {reviews.map((rev) => (
             <CarouselItem key={rev.id}>
               <div className="p-1 h-[500px]">
